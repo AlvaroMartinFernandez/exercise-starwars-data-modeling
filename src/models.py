@@ -14,6 +14,8 @@ class Peoples(Base):
     uid = Column(String(250), primary_key=True)
     name = Column(String(250), nullable=False)
     url = Column(String(250), nullable=False)
+    
+    
 class Vehicles(Base):
     __tablename__ = 'vehicles'
     # Here we define columns for the table person
@@ -30,21 +32,12 @@ class Planets(Base):
     url = Column(String(250), nullable=False)
 
 
-class People(Base):
-    __tablename__ = 'people'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(String(250), primary_key=True)
-    uid = Column(String(250), ForeignKey('peoples.id'))
-    Description = Column(String(250), nullable=False)
-    __v= Column(Integer)
-
 class PropertiesPeople(Base):
     __tablename__ = 'propertiespeople'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(String(250), primary_key=True)
-    people_id = Column(String(250), ForeignKey('people.id'))
+    peoples_uid = Column(String(250), ForeignKey('peoples.uid'))
     height=Column(String(250), nullable=False)
     mass=Column(String(250), nullable=False)
     hair_color= Column(String(250), nullable=False)
@@ -57,21 +50,13 @@ class PropertiesPeople(Base):
     homeworld=Column(String(250), nullable=False)
 
 
-class Vehicle(Base):
-    __tablename__ = 'vehicle'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(String(250), primary_key=True)
-    uid = Column(String(250), ForeignKey('vehicles.id'))
-    Description = Column(String(250), nullable=False)
-    __v= Column(Integer)
 
 class PropertiesVehicle(Base):
     __tablename__ = 'propertiesvehicle'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(String(250), primary_key=True)
-    vehicle_id = Column(String(250), ForeignKey('vehicle.id'))
+    vehicles_uid = Column(String(250), ForeignKey('vehicles.uid'))
 
     model= Column(String(250), nullable=False)
     vehicle_class=Column(String(250), nullable=False)
@@ -88,22 +73,12 @@ class PropertiesVehicle(Base):
     edited= Column(DATETIME, nullable=False)
 
 
-
-class Planet(Base):
-    __tablename__ = 'planet'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(String(250), primary_key=True)
-    uid = Column(String(250), ForeignKey('planets.id'))
-    Description = Column(String(250), nullable=False)
-    __v= Column(Integer)
-
 class PropertiesPlanet(Base):
     __tablename__ = 'propertiesplanet'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(String(250), primary_key=True)
-    vehicle_id = Column(String(250), ForeignKey('planet.id'))
+    vehicles_uid = Column(String(250), ForeignKey('planets.uid'))
 
     diameter= Column(String(250), nullable=False)
     rotation_period=Column(String(250), nullable=False)
@@ -116,22 +91,6 @@ class PropertiesPlanet(Base):
     created=Column(DATETIME, nullable=False)
     edited= Column(DATETIME, nullable=False)
 
-class Films(Base):
-    __tablename__ = 'films'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(String(250), primary_key=True)
-    vehicle_id=Column(String(250), ForeignKey('propertiesvehicle.id'))
-    name = Column(String(250), nullable=False)
-    url = Column(String(250), nullable=False)
-class Pilots(Base):
-    __tablename__ = 'pilots'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(String(250), primary_key=True)
-    vehicle_id=Column(String(250), ForeignKey('propertiesvehicle.id'))
-    name = Column(String(250), nullable=False)
-    url = Column(String(250), nullable=False)
 
 
   
