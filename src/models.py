@@ -86,7 +86,7 @@ class ListFavorites(Base):
     id = Column(Integer, primary_key=True)
     user_id=Column(Integer, ForeignKey("users.id"), nullable=False)
     peoples_id=Column(Integer, ForeignKey("peoples.id"), nullable=False)
-    vehicles_id=Column(Integer, ForeignKey("vechicles.id"), nullable=False)
+    vehicles_id=Column(Integer, ForeignKey("vehicles.id"), nullable=False)
     planets_id=Column(Integer, ForeignKey("planets.id"), nullable=False)
 
 
