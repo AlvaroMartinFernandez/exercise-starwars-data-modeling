@@ -24,6 +24,7 @@ class Peoples(Base):
     created=Column(DATETIME, nullable=False)
     edited= Column(DATETIME, nullable=False)
     homeworld=Column(String(250), nullable=False)
+    list= relationship('ListFavorites', back_populates= 'people', lazy = True)
     
 
 class Vehicles(Base):
@@ -46,6 +47,7 @@ class Vehicles(Base):
     consumables = Column(String(250), nullable=False)
     created=Column(DATETIME, nullable=False)
     edited= Column(DATETIME, nullable=False)
+    list= relationship('ListFavorites', back_populates= 'vehicle', lazy = True)
 
 
 class Planets(Base):
@@ -65,6 +67,7 @@ class Planets(Base):
     surface_water = Column(String(250), nullable=False)
     created=Column(DATETIME, nullable=False)
     edited= Column(DATETIME, nullable=False)
+    list= relationship('ListFavorites', back_populates= 'planet', lazy = True)
 
 class Users(Base):
     __tablename__ = 'users'
@@ -76,6 +79,7 @@ class Users(Base):
     password = Column(String(250), nullable=False)
     created = Column(String(250), nullable=False)
     edited = Column(String(250), nullable=False)
+    list= relationship('ListFavorites', back_populates= 'user', lazy = True)
 
 
 
@@ -88,7 +92,11 @@ class ListFavorites(Base):
     peoples_id=Column(Integer, ForeignKey("peoples.id"), nullable=False)
     vehicles_id=Column(Integer, ForeignKey("vehicles.id"), nullable=False)
     planets_id=Column(Integer, ForeignKey("planets.id"), nullable=False)
-
+    
+    user= relationship('Users', back_populates= 'list', lazy = True)
+    people= relationship('Peoples', back_populates= 'list', lazy = True)
+    vehicle= relationship('Vechicles', back_populates= 'list', lazy = True)
+    planet= relationship('Planets', back_populates= 'list', lazy = True)
 
 
 
